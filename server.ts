@@ -1,9 +1,9 @@
 import express from 'express';
-const dotenv = require('dotenv')
-const colors = require ('colors')
-const morgan = require ('morgan')
-const cors = require ('cors')
-const connectDB = require('./config/db')
+import dotenv from 'dotenv';
+import colors from 'colors';
+import morgan from 'morgan';
+import cors from 'cors';
+import connectDB from './config/db';
 //dot config
 dotenv.config()
 
