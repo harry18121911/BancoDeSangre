@@ -1,6 +1,6 @@
 import { testController } from "../controllers/testController"
 
-const express = require ('express')
+import express from 'express'
 
 //router objet
 
@@ -11,4 +11,4 @@ const router = express.Router()
 router.get('/', testController)
 
 //export
-module.exports = router;
+export default router;

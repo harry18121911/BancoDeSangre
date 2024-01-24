@@ -7,7 +7,7 @@ interface User{
     hospitalName:string,
     email:string,
     password:string,
-    website:string,
+    address:string,
     phone:string,
 }
 
@@ -53,7 +53,7 @@ const useSchema = new mongoose.Schema<User>({
         type:String,
         required:[true, "Password is required"]
     },
-    website:{
+    address:{
         type:String,
         required:[true,"Address is required"]
     },
