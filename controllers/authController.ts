@@ -2,7 +2,6 @@ import express, {Request, Response} from 'express';
 import bcrypt from 'bcrypt';
 import userModel from '../models/userModel';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 export const registerController = async(req:Request, res:Response) =>{
     try {
         const existingUser = await userModel.findOne({email:req.body.email})
@@ -64,6 +63,24 @@ export const loginController = async(req:Request, res:Response) =>{
         res.status(500).send({
             success: false,
             message: "Error in Login API",
+            error
+        })
+    }
+};
+
+export const currentUserController = async(req:Request, res:Response) =>{
+    try {
+        const user = await userModel.findOne({_id:req.body.userId})
+        return res.status(200).send({
+            success:true,
+            message:'User Fetched Successfully',
+            user
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send({
+            success:false,
+            message:'Unable to get current user',
             error
         })
     }
