@@ -43,6 +43,13 @@ export const loginController = async(req:Request, res:Response) =>{
                 message:"User email not found in database",
             })
         }
+        //check role
+        if(user.role !== req.body.role){
+            return res.status(500).send({
+                success:false,
+                message:"Role does not match",
+            })
+        }
         //compara password
         const comparePassword = await bcrypt.compare(req.body.password, user.password)
         if(!comparePassword){

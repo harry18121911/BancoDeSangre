@@ -6,6 +6,7 @@ import cors from 'cors';
 import connectDB from './config/db';
 import testRoutes from './routes/testRoutes';
 import authRoutes from './routes/authRoutes';
+import inventoryRoutes from './routes/inventoryRoutes';
 //dot config
 dotenv.config()
 //mongodb connection
@@ -25,6 +26,8 @@ app.use(morgan('dev'))
 app.use('/api/v1/test',testRoutes);
 //auth route
 app.use('/api/v1/auth',authRoutes);
+//inventory routes
+app.use('/api/v1/inventory',inventoryRoutes);
 
 //htpp://localhost:8080/test
 
