@@ -11,11 +11,11 @@ interface User{
     phone:string,
 }
 
-const useSchema = new mongoose.Schema<User>({
+const userSchema = new mongoose.Schema<User>({
     role:{
         type:String,
         required:[true,"Role is required"],
-        enum:["admin","organization","user","hospital"]
+        enum:["admin","organization","donor","hospital"]
     },
     name:{
         type:String,
@@ -63,4 +63,4 @@ const useSchema = new mongoose.Schema<User>({
     },
 }, {timestamps:true})
 
-export default mongoose.model("users", useSchema)
+export default mongoose.model("users", userSchema)
