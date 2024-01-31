@@ -1,6 +1,7 @@
 import express, {Request, Response} from 'express';
 import userModel from '../models/userModel';
 import inventoryModel from '../models/inventoryModel';
+
 export const createInventoryController = async (req:Request, res:Response) =>{
     try {
         const {email, inventoryType}= req.body
@@ -31,3 +32,25 @@ export const createInventoryController = async (req:Request, res:Response) =>{
         })
     }
 };
+
+export const getInventoryController =async (req:Request, res:Response) =>{
+    try {
+        const inventory = await inventoryModel.find({organization:req.body.userId})
+        .populate("donor")
+        .populate("hospital")
+        .sort({createdAt: -1})
+        return res.status(200).send({
+            success:true,
+            message:"Get all records successfully",
+            inventory
+        });
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send({
+            success:false,
+            message:'Error in Get All Inventory',
+            error
+        })
+
+    }
+}
