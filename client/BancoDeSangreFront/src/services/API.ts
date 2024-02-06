@@ -1,6 +1,6 @@
 import axios from 'axios'
-
-const API = axios.create({baseURL:process.env.REACT_APP_BASEURL});
+const urlBasica = import.meta.env.VITE_API_URL
+const API = axios.create({baseURL:urlBasica});
 
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem('token')){

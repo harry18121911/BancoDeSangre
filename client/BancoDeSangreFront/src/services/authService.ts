@@ -1,10 +1,13 @@
+import { userLogin } from "../redux/features/auth/authActions";
+import store from "../redux/store";
+
 export const handleLogin = (event: React.FormEvent, email: string, password: string, role: string) => {
     event.preventDefault();
     try {
         if(!role || !email || !password){
             return alert("Please Provide All Fields")
         }
-        console.log("Login", event, email, password, role)
+        store.dispatch(userLogin({ email, password, role}));
     } catch (error) {
         console.log(error)
     }
