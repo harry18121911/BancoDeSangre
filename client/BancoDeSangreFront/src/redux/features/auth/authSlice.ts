@@ -16,7 +16,7 @@ const authSlice= createSlice({
     extraReducers(builder) {
         builder.addCase(userLogin.pending, (state)=>{
             state.loading = true;
-            state.error = Error ;
+            state.error = ErrorEvent;
         })
         builder.addCase(userLogin.fulfilled, (state, payload)=>{
             state.loading = false;
@@ -24,9 +24,9 @@ const authSlice= createSlice({
             state.token = payload;
             
         })
-        builder.addCase(userLogin.rejected, (state, payload) =>{
+        builder.addCase(userLogin.rejected, (state, ) =>{
             state.loading = false;
-            state.error = payload;
+            state.error = ErrorEvent;
             
         })
     },

@@ -1,7 +1,6 @@
 import { ChangeEvent, useState } from "react"
 import InputType from "./InputType"
 import { Link } from "react-router-dom";
-import React from "react";
 import { handleLogin, handleRegister } from "../../../services/authService";
 const Form = (props:{submitBtn:string, formTitle:string, formType:string}) => {
   const [email,setEmail] =useState("");
@@ -80,10 +79,10 @@ const Form = (props:{submitBtn:string, formTitle:string, formType:string}) => {
             case props.formType === "Login":{
               return(
                 <>
-                  <InputType labelText={"email"} labelFor={"for email"} inputType={"email"} name={"email"} value={email} 
-        onChange={({target}:ChangeEvent<HTMLInputElement>) => setEmail(target.value)}/>
-        <InputType labelText={"Password"} labelFor={"for password"} inputType={"password"} name={"password"} value={password} 
-        onChange={({target}:ChangeEvent<HTMLInputElement>) => setPassword(target.value)}/>
+                  <InputType id={"email"} labelText={"Email"} labelFor={"email"} inputType={"email"} name={"email"} value={email} 
+                  onChange={({target}:ChangeEvent<HTMLInputElement>) => setEmail(target.value)}/>
+                  <InputType id="password" labelText={"Password"} labelFor={"password"} inputType={"password"} name={"password"} value={password} 
+                  onChange={({target}:ChangeEvent<HTMLInputElement>) => setPassword(target.value)}/>
                 </>
               )
             }
@@ -93,23 +92,23 @@ const Form = (props:{submitBtn:string, formTitle:string, formType:string}) => {
                   
         
         {(role ==='admin' || role=== 'donor') && (
-          <InputType labelText={"Name"} labelFor={"forname"} inputType={"name"} name={"name"} value={name} 
+          <InputType id="name" labelText={"Name"} labelFor={"forname"} inputType={"name"} name={"name"} value={name} 
           onChange={({target}:ChangeEvent<HTMLInputElement>) => setName(target.value)}/>
         )}
 
-        {(role==='organization') && (<InputType labelText={"Organization Name"} labelFor={" for organizationName"} inputType={"organizatioName"} name={"organizationName"} value={organizationName} 
+        {(role==='organization') && (<InputType id="organizationName" labelText={"Organization Name"} labelFor={"organizationName"} inputType={"organizatioName"} name={"organizationName"} value={organizationName} 
         onChange={({target}:ChangeEvent<HTMLInputElement>) => setOrganizationName(target.value)}/> )}
         
-        {(role==='hospital') && (<InputType labelText={"Hospital Name"} labelFor={"for hospitalName"} inputType={"hospitalName"} name={"hospitalName"} value={hospitalName} 
+        {(role==='hospital') && (<InputType id="hospitalName" labelText={"Hospital Name"} labelFor={"hospitalName"} inputType={"hospitalName"} name={"hospitalName"} value={hospitalName} 
         onChange={({target}:ChangeEvent<HTMLInputElement>) => setHospitalName(target.value)}/>)}
 
-        <InputType labelText={"email"} labelFor={"foremail"} inputType={"email"} name={"email"} value={email} 
+        <InputType id="email" labelText={"email"} labelFor={"email"} inputType={"email"} name={"email"} value={email} 
         onChange={({target}:ChangeEvent<HTMLInputElement>) => setEmail(target.value)}/>
-        <InputType labelText={"Password"} labelFor={"forpassword"} inputType={"password"} name={"password"} value={password} 
+        <InputType id="password" labelText={"Password"} labelFor={"password"} inputType={"password"} name={"password"} value={password} 
         onChange={({target}:ChangeEvent<HTMLInputElement>) => setPassword(target.value)}/>
-        <InputType labelText={"address"} labelFor={"for address"} inputType={"address"} name={"address"} value={address} 
+        <InputType id="adress" labelText={"address"} labelFor={"address"} inputType={"address"} name={"address"} value={address} 
         onChange={({target}:ChangeEvent<HTMLInputElement>) => setAddress(target.value)}/>
-        <InputType labelText={"phone"} labelFor={"for phone"} inputType={"phone"} name={"phone"} value={phone} 
+        <InputType id="phone" labelText={"phone"} labelFor={"for phone"} inputType={"phone"} name={"phone"} value={phone} 
         onChange={({target}:ChangeEvent<HTMLInputElement>) => setPhone(target.value)}/>
                 </>
               )

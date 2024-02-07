@@ -4,13 +4,14 @@ import { toast } from "react-toastify";
 
 export const userLogin = createAsyncThunk(
     'auth/login',
-    async(user:{role:string, email:string,password:string, } )=>{
+    async(user:{role:string, email:string,password:string, token:string } )=>{
         try {
             const {data} = await API.post('/auth/login',user)
             if(data.success){
                 localStorage.setItem('token',data.token)
                 toast.success(data.message)
             }
+            return data;
         } catch (error) {
             if (error instanceof Error) {
               console.log(`${error.name}:${error.message}`); // Typescript is happy !
