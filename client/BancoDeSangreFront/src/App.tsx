@@ -4,12 +4,13 @@ import {Routes, Route} from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
-import { ToastContainer} from 'react-toastify'
+import { Toaster } from 'react-hot-toast'
+
 function App() {
   return (
     <>
       <div>
-        <ToastContainer/>
+        <Toaster/>
         <Routes>
           <Route path='/' element={<HomePage/>}></Route>
           <Route path='/login' element={<Login/>}></Route>

@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../../services/API";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 export const userLogin = createAsyncThunk(
     'auth/login',
-    async(user:{role:string, email:string,password:string, token:string } )=>{
+    async(user:{role:string, email:string,password:string,} )=>{
         try {
             const {data} = await API.post('/auth/login',user)
             if(data.success){
@@ -21,3 +21,31 @@ export const userLogin = createAsyncThunk(
           }
         }
 )
+
+//register
+export const userRegister = createAsyncThunk(
+  'auth/register', 
+  async(user:{
+      name?:string, 
+      role?:string,
+      email?:string, 
+      password?:string, 
+      phone?:string,
+      organizationName?:string,
+      hospitalName?:string,
+      address?:string,
+  })=>{
+    try {
+      const {data} = await API.post('/auth/register', user)
+      if(data.success){
+        toast.success("User registered successfully")
+        window.location.replace('/login');
+      }
+      return data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
+
