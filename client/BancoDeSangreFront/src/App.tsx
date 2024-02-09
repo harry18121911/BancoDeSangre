@@ -5,6 +5,9 @@ import HomePage from './pages/HomePage'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import { Toaster } from 'react-hot-toast'
+import ProtectedRoute from './components/Routes/ProtectedRoute';
+import PublicRoute from './components/Routes/PublicRoute'
+
 
 function App() {
   return (
@@ -12,9 +15,21 @@ function App() {
       <div>
         <Toaster/>
         <Routes>
-          <Route path='/' element={<HomePage/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
-          <Route path='/register' element={<Register/>}></Route>
+          <Route path='/' element={
+            <ProtectedRoute><HomePage/></ProtectedRoute>
+              
+            
+          }></Route>
+          <Route path='/login' element={
+          <PublicRoute>
+            <Login/>
+          </PublicRoute>
+          }></Route>
+          <Route path='/register' element={
+          <ProtectedRoute>
+            <Register/>
+          </ProtectedRoute>
+          }></Route>
         </Routes>
       </div>
     </>

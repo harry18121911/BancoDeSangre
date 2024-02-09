@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../../services/API";
 import { toast } from "react-hot-toast";
+import { Request } from 'express';
 
 export const userLogin = createAsyncThunk(
     'auth/login',
@@ -10,6 +11,7 @@ export const userLogin = createAsyncThunk(
             if(data.success){
                 localStorage.setItem('token',data.token)
                 toast.success(data.message)
+                window.location.replace('/')
             }
             return data;
         } catch (error) {
@@ -48,4 +50,18 @@ export const userRegister = createAsyncThunk(
   }
 )
 
+//current user
+export const getCurrentUser= createAsyncThunk(
+  'auth/getCurrentUser', 
+  async(req:Request)=>{
+    try {
+      const {data} = await API.get('/auth/current-user',req)
+      if(data){
+        return data;
+      }
+    } catch (error) {
+      console.log(error)
+    }
 
+  }
+)
