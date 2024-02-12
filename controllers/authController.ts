@@ -55,7 +55,8 @@ export const loginController = async(req:Request, res:Response) =>{
         if(!comparePassword){
             return res.status(500).send({
                 success:false,
-                message:'Invalid Password'
+                message:'Invalid Password',
+                
             })
         }
         const token = jwt.sign({userId:user._id}, process.env.JWT_SECRET as string,{expiresIn: '1d'})

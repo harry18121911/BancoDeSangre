@@ -1,8 +1,22 @@
+
 import Form from "../../components/shared/Form/Form"
+import {useSelector} from 'react-redux'
+import { RootState } from "../../redux/store"
+import Spinner from '../../components/shared/Spinner';
+import toast from "react-hot-toast";
+
+
 
 const Login = () => {
-  return (
-    <div className="row g-0">
+  const loading = useSelector<RootState,boolean>((state) => state.auth.loading)
+  const error = useSelector<RootState,string>((state) => state.auth.error)
+  return(
+    <>
+      {error && <span>{toast.error(error)}</span>}
+    {loading ? (
+      <Spinner/>
+      ) : (
+      <div className="row g-0">
       <div className="col-md-8 form-banner">
         <img src="./assets/images/banner1.png" alt="loginImage" />
       </div>
@@ -12,7 +26,9 @@ const Login = () => {
               formType={"Login"}/>
       </div>
     </div>
-  )
-}
+    )}
+    </>
+  );
+};
 
 export default Login

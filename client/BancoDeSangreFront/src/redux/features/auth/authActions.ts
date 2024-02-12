@@ -5,20 +5,23 @@ import { Request } from 'express';
 
 export const userLogin = createAsyncThunk(
     'auth/login',
-    async(user:{role:string, email:string,password:string,} )=>{
+    async(user:{role:string, email:string,password:string,}, {rejectWithValue} )=>{
         try {
             const {data} = await API.post('/auth/login',user)
             if(data.success){
                 localStorage.setItem('token',data.token)
-                toast.success(data.message)
+                toast.success("LOGIN EXITOSO")
                 window.location.replace('/')
-            }
-            return data;
+                
+              }
+              return data;
+            
+
         } catch (error) {
             if (error instanceof Error) {
-              console.log(`${error.name}:${error.message}`); // Typescript is happy !
-            } else {
-              return new Error(`Unexpected error : ${error}`)
+              return rejectWithValue(error); // Typescript is happy !
+            } else {              
+              return rejectWithValue(error)
             }
           }
         }
@@ -36,7 +39,7 @@ export const userRegister = createAsyncThunk(
       organizationName?:string,
       hospitalName?:string,
       address?:string,
-  })=>{
+  },{rejectWithValue})=>{
     try {
       const {data} = await API.post('/auth/register', user)
       if(data.success){
@@ -45,7 +48,11 @@ export const userRegister = createAsyncThunk(
       }
       return data
     } catch (error) {
-      console.log(error)
+      if (error instanceof Error) {
+        return rejectWithValue(error); // Typescript is happy !
+      } else {              
+        return rejectWithValue(error)
+      }
     }
   }
 )

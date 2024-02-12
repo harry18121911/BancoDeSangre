@@ -28,7 +28,7 @@ const authSlice= createSlice({
             state.token = token;          
             
         })
-        builder.addCase(userLogin.rejected, (state, ) =>{
+        builder.addCase(userLogin.rejected, (state) =>{
             state.loading = false;
             state.error = "Rejected";
         });
@@ -46,7 +46,7 @@ const authSlice= createSlice({
         })
         builder.addCase(userRegister.rejected, (state, ) =>{
             state.loading = false;
-            state.error = "Rejected";
+            state.error = "Rejected R";
         });
 
         //current user
@@ -62,7 +62,7 @@ const authSlice= createSlice({
         })
         builder.addCase(getCurrentUser.rejected, (state, ) =>{
             state.loading = false;
-            state.error = "Rejected";
+            state.error = "Invalid credentials";
         });
     },
 });
