@@ -1,17 +1,19 @@
-
 import {BiDonateBlood, BiUserCircle} from 'react-icons/bi'
 import { RootState } from '../../../redux/store'
 import { useSelector } from 'react-redux'
-
-/*type ContainerProps={
-    children:React.ReactNode
-}*/
-
-
+import { useNavigate} from 'react-router-dom'
 
 const Header = () => {
     const userName = useSelector<RootState,string>((state) => state.auth.name)
-    
+    const navigate = useNavigate(); 
+  // logout handle 
+  const handleLogout= () =>{
+    localStorage.clear()
+    alert("Logout Successfully")
+    navigate('/login')
+  }
+  
+
   return (
     <div>
         <nav className="navbar">
@@ -22,7 +24,7 @@ const Header = () => {
                         <p className='nav-link'><BiUserCircle/>Welcome {userName}</p>
                     </li>
                     <li className='nav-item mx-3 '>
-                        <button className='btn btn-danger' >
+                        <button className='btn btn-danger' onClick={handleLogout} >
                             Logout
                         </button>
                     </li>
