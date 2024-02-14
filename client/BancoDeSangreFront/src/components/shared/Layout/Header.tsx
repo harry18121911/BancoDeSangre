@@ -5,6 +5,9 @@ import { useNavigate} from 'react-router-dom'
 
 const Header = () => {
     const userName = useSelector<RootState,string>((state) => state.auth.name)
+    const userRole = useSelector<RootState,string>((state) => state.auth.role)
+    const hospitalName = useSelector<RootState,string>((state) => state.auth.hospitalName)
+    const organizationName = useSelector<RootState,string>((state) => state.auth.organizationName)
     const navigate = useNavigate(); 
   // logout handle 
   const handleLogout= () =>{
@@ -21,7 +24,10 @@ const Header = () => {
                 <div className="navbar-brand h1"><BiDonateBlood color="red"/>Blood Bank App</div>
                 <ul className='navbar-nav flex-row'>
                     <li className='nav-item mx-3'>
-                        <p className='nav-link'><BiUserCircle/>Welcome {userName}</p>
+                        <p className='nav-link'><BiUserCircle/>Welcome {userName || hospitalName || organizationName }{" "} 
+                        &nbsp; 
+                        <span className="badge bg-secondary">{userRole} </span>
+                        </p>
                     </li>
                     <li className='nav-item mx-3 '>
                         <button className='btn btn-danger' onClick={handleLogout} >
