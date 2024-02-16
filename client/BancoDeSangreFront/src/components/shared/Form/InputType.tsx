@@ -4,7 +4,7 @@ const InputType = (props: {
     labelText:string,
     inputType:string,
     name:string ,
-    value:string,
+    value:string | number,
     onChange:React.ChangeEventHandler<HTMLInputElement>}) => {
     return (
         <div>

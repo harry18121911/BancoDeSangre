@@ -4,6 +4,7 @@ interface Inventory{
     inventoryType:string,
     bloodGroup:string,
     quantity:number,
+    donorEmail:Types.ObjectId,
     organization: Types.ObjectId,
     hospital:Types.ObjectId,
     donor:Types.ObjectId
@@ -23,6 +24,12 @@ const inventorySchema = new mongoose.Schema<Inventory>({
         type:Number,
         required:[true,'blood quantity is require']
     },
+    donorEmail: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+    required: [true, "Donor email is required"],
+    }
+    ,
     organization:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'users',
@@ -39,7 +46,7 @@ const inventorySchema = new mongoose.Schema<Inventory>({
         type:mongoose.Schema.Types.ObjectId,
         ref:'users',
         required:function(){
-            return this.inventoryType === "in";
+        return this.inventoryType === "in";
         }
     }
 })
