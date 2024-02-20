@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux'
 import { useNavigate} from 'react-router-dom'
 
 const Header = () => {
-    const userName = useSelector<RootState,string>((state) => state.auth.name)
-    const userRole = useSelector<RootState,string>((state) => state.auth.role)
-    const hospitalName = useSelector<RootState,string>((state) => state.auth.hospitalName)
-    const organizationName = useSelector<RootState,string>((state) => state.auth.organizationName)
+    const userName = useSelector<RootState,string>((state) => state.auth.user.name)
+    const userRole = useSelector<RootState,string>((state) => state.auth.user.role)
+    const hospitalName = useSelector<RootState,string>((state) => state.auth.user.hospitalName)
+    const organizationName = useSelector<RootState,string>((state) => state.auth.user.organizationName)
     const navigate = useNavigate(); 
   // logout handle 
   const handleLogout= () =>{
