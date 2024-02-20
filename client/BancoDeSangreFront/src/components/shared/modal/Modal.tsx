@@ -22,7 +22,7 @@ const Modal = () => {
   const handleModalSummit = async () => {
     try {
       if (!bloodGroup || !quantity) {
-        return alert('Please Provide All Fiedls');
+        return alert('Please Provide All Fields');
       }
       const { data } = await API.post('/inventory/create-inventory', {
         email,
@@ -35,9 +35,10 @@ const Modal = () => {
       })
       if (data?.success) {
         alert('New Record Created')
-        window.location.reload()
-      }
+        //window.location.reload()
+      }else{if(data?.failed){alert(data?.message)}}
     } catch (error) {
+      alert(error)
       console.log(error);
     }
   }
@@ -54,8 +55,11 @@ const Modal = () => {
               <div className="d-flex mb-3">
                 Blood Type: &nbsp;
                 <div className="form-check ms-3">
-                  <input type="radio" name="inRadio"
-                    defaultChecked value={"in"}
+                  <input 
+                    type="radio" 
+                    name="inRadio"
+                    defaultChecked 
+                    value={"in"}
                     onChange={(event) => setInventoryType(event.target.value)}
                     className="form-check-input" />
                   <label htmlFor="in" className="form-check-label">
@@ -63,8 +67,10 @@ const Modal = () => {
                   </label>
                 </div>
                 <div className="form-check ms-3">
-                  <input type="radio" name="inRadio"
-                    defaultChecked value={"out"}
+                  <input 
+                    type="radio" 
+                    name="inRadio"
+                    value={"out"}
                     onChange={(event) => setInventoryType(event.target.value)}
                     className="form-check-input" />
                   <label htmlFor="out" className="form-check-label">
@@ -76,7 +82,7 @@ const Modal = () => {
               <select className="form-select mb-4" aria-label="Default select example"
                 onChange={(event) => setBloodGroup(event.target.value)}>
 
-                <option selected>Open this select menu</option>
+                <option defaultValue={"Open this select menu"}>Open this select menu</option>
                 <option value={"O+"}>O+</option>
                 <option value={"O-"}>O-</option>
                 <option value={"AB+"}>AB+</option>
