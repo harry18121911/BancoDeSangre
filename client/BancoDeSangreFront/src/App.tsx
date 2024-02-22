@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast'
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute'
 import Donor from './pages/Dashboard/Donor'
+import Hospital from './pages/Dashboard/Hospital'
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
           <Route path='/donor' element={
             <ProtectedRoute><Donor /></ProtectedRoute>
           }></Route>
+          <Route path='/hospital' element={
+            <ProtectedRoute><Hospital /></ProtectedRoute>
+          }></Route>
           <Route path='/' element={
             <ProtectedRoute><HomePage /></ProtectedRoute>
           }></Route>
@@ -27,10 +31,8 @@ function App() {
               <Login />
             </PublicRoute>
           }></Route>
-          <Route path='/register' element={
-            <ProtectedRoute>
-              <Register />
-            </ProtectedRoute>
+          <Route path='/register' element={           
+              <Register />          
           }></Route>
         </Routes>
       </div>

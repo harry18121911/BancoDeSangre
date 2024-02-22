@@ -128,3 +128,27 @@ export const getDonorsController= async (req:Request,res:Response)=>{
     })
   }
 }
+
+export const getHospitalsController =async(req:Request,res:Response)=>{
+  try {
+    const organization =req.body.userId
+    //Get hospital id
+    const hospitalId = await inventoryModel.distinct('hospital',{organization})
+    //find hospital
+    const hospitals = await userModel.find({
+      _id:{$in: hospitalId}
+    })
+    return res.status(200).send({
+      success:true,
+      message:"Hospital fetched successfully",
+      hospitals
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send({
+      success:false,
+      errorMessage:"Error in get hospital API",
+      error
+    })
+  }
+}
