@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getCurrentUser, userLogin, userRegister } from './authActions';
 const token = localStorage.getItem('token') ? localStorage.getItem('token'): {}
-
 const error :string = "";
 const name : string = "";
 const role : string = "";

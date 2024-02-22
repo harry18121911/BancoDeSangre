@@ -15,10 +15,8 @@ const Modal = () => {
   const [inventoryType, setInventoryType] = useState("in")
   const [bloodGroup, setBloodGroup] = useState("")
   const [quantity, setQuantity] = useState(0)
-  const [donorEmail, setDonorEmail] = useState("")
+  const [email, setEmail] = useState("")
   const user = useSelector<RootState, user>((state) => state.auth.user)
-  const donor: string = "65b08c06a71ba07744d26504"
-  const email: string = "blade@blade.com"
   const handleModalSummit = async () => {
     try {
       if (!bloodGroup || !quantity) {
@@ -27,18 +25,16 @@ const Modal = () => {
       const { data } = await API.post('/inventory/create-inventory', {
         email,
         organization: user._id,
-        donorEmail,
         inventoryType,
         bloodGroup,
         quantity,
-        donor
       })
       if (data?.success) {
         alert('New Record Created')
         //window.location.reload()
-      }else{if(data?.failed){alert(data?.message)}}
+      } else { if (data?.failed) { alert(data?.message) } }
     } catch (error) {
-      alert(error)
+      alert("Error in create inventory API")
       console.log(error);
     }
   }
@@ -55,10 +51,10 @@ const Modal = () => {
               <div className="d-flex mb-3">
                 Blood Type: &nbsp;
                 <div className="form-check ms-3">
-                  <input 
-                    type="radio" 
+                  <input
+                    type="radio"
                     name="inRadio"
-                    defaultChecked 
+                    defaultChecked
                     value={"in"}
                     onChange={(event) => setInventoryType(event.target.value)}
                     className="form-check-input" />
@@ -67,8 +63,8 @@ const Modal = () => {
                   </label>
                 </div>
                 <div className="form-check ms-3">
-                  <input 
-                    type="radio" 
+                  <input
+                    type="radio"
                     name="inRadio"
                     value={"out"}
                     onChange={(event) => setInventoryType(event.target.value)}
@@ -93,13 +89,13 @@ const Modal = () => {
                 <option value={"B-"}>B-</option>
               </select>
               <InputType
-                id={"donorEmail"}
-                name={"donorEmail"}
-                labelFor={"donorEmail"}
+                id={"email"}
+                name={"email"}
+                labelFor={"email"}
                 labelText={"Donor email"}
-                inputType={"donorEmail"}
-                value={donorEmail}
-                onChange={(event) => setDonorEmail(event.target.value)}
+                inputType={"email"}
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
               />
 
               <InputType

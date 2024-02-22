@@ -1,11 +1,11 @@
-import express, {Request, Response} from 'express';
+import  {Request, Response} from 'express';
 import userModel from '../models/userModel';
 import inventoryModel from '../models/inventoryModel';
 import mongoose from 'mongoose';
 
 export const createInventoryController = async (req:Request, res:Response) =>{
     try {
-        const {email, inventoryType}= req.body
+        const {email }= req.body
         //validation
         const user = await userModel.findOne({email})
         if(!user){
@@ -55,12 +55,15 @@ export const createInventoryController = async (req:Request, res:Response) =>{
             const availableQuantityOfBlood = totalIn - totalOut
             //quantity validation
             if(availableQuantityOfBlood < requestedQuantityOfBlood){
-                return res.status(201).send({
+                return res.status(202).send({
                     failed:true,
                     message:`Only ${availableQuantityOfBlood} ML of ${requestedBloodGroup.toUpperCase()} is available.`
                 })
             }
             req.body.hospital = user?._id
+        }else{
+          req.body.donor = user?._id;
+
         }
         //save record
         const inventory = new inventoryModel(req.body)
@@ -99,4 +102,29 @@ export const getInventoryController =async (req:Request, res:Response) =>{
         })
 
     }
+}
+
+//GET DONOR RECORDS
+export const getDonorsController= async (req:Request,res:Response)=>{
+  try {
+    const organization = req.body.userId
+    //find donors
+    const donorId = await inventoryModel.distinct("donor",{
+      organization
+    });
+    //console.log(donorId)
+    const donors = await userModel.find({_id: donorId})
+    return res.status(200).send({
+      success:true,
+      message: "Donor Record Successfully Fetched",
+      donors
+    })
+  } catch (error) {
+   console.log(error)
+   return res.status(500).send({
+      error,
+      errorMessage:"Custom Error"
+
+    })
+  }
 }

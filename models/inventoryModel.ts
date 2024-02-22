@@ -1,60 +1,56 @@
 import mongoose, { Types } from "mongoose"
 
-interface Inventory{
-    inventoryType:string,
-    bloodGroup:string,
-    quantity:number,
-    donorEmail:string,
-    email:string,
-    organization: Types.ObjectId,
-    hospital:Types.ObjectId,
-    donor:Types.ObjectId
+interface Inventory {
+  inventoryType: string,
+  bloodGroup: string,
+  quantity: number,
+  donorEmail: string,
+  email: string,
+  organization: Types.ObjectId,
+  hospital: Types.ObjectId,
+  donor: Types.ObjectId
 }
 const inventorySchema = new mongoose.Schema<Inventory>({
-    inventoryType:{
-        type:String,
-        required:[true,'inventory type required'],
-        enum:['in','out']
-    },
-    bloodGroup: {
-        type:String,
-        required:[true, 'blood group is required'],
-        enum:['O+', 'O-','AB+', 'AB-',"A+",'A-','B+','B-']
-    },
-    quantity:{
-        type:Number,
-        required:[true,'blood quantity is require']
-    },
-    donorEmail:{
-        type:String,
-        required:[true,'donor email is required']
-    },
-    email: {
-        type: String,
+  inventoryType: {
+    type: String,
+    required: [true, 'inventory type required'],
+    enum: ['in', 'out']
+  },
+  bloodGroup: {
+    type: String,
+    required: [true, 'blood group is required'],
+    enum: ['O+', 'O-', 'AB+', 'AB-', "A+", 'A-', 'B+', 'B-']
+  },
+  quantity: {
+    type: Number,
+    required: [true, 'blood quantity is require']
+  },
+  email: {
+    type: String,
     required: [true, "Donor email is required"],
+  }
+  ,
+  organization: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+    required: [true, 'organization is required']
+  },
+  hospital: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+    required: function() {
+      return this.inventoryType === "out";
     }
-    ,
-    organization:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'users',
-        required:[true,'organization is required']
-    },
-    hospital:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'users',
-        required: function(){
-            return this.inventoryType === "out";
-        }
-    },
-    donor:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'users',
-        required:function(){
-        return this.inventoryType === "in";
-       }
+  },
+  donor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+    required: function() {
+      return this.inventoryType === "in";
     }
+  }
 },
-    {timestamps:true}
+  { timestamps: true }
 )
 
 export default mongoose.model("inventory", inventorySchema)
