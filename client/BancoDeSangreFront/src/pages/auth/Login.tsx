@@ -5,8 +5,6 @@ import { RootState } from "../../redux/store"
 import Spinner from '../../components/shared/Spinner';
 import toast from "react-hot-toast";
 
-
-
 const Login = () => {
   const loading = useSelector<RootState,boolean>((state) => state.auth.loading)
   const error = useSelector<RootState,string>((state) => state.auth.error)

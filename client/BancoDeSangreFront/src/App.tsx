@@ -9,6 +9,7 @@ import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute'
 import Donor from './pages/Dashboard/Donor'
 import Hospital from './pages/Dashboard/Hospital'
+import Organization from './pages/Dashboard/Organization'
 
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
           }></Route>
           <Route path='/hospital' element={
             <ProtectedRoute><Hospital /></ProtectedRoute>
+          }></Route>
+           <Route path='/organization' element={
+            <ProtectedRoute><Organization /></ProtectedRoute>
           }></Route>
           <Route path='/' element={
             <ProtectedRoute><HomePage /></ProtectedRoute>

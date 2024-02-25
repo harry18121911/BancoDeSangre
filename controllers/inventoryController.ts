@@ -152,3 +152,51 @@ export const getHospitalsController =async(req:Request,res:Response)=>{
     })
   }
 }
+//GET ORG PROFILES
+
+export const getOrganizationController = async (req:Request, res:Response)=>{
+  try {
+    const donor = req.body.userId
+    const orgId = await inventoryModel.distinct('organization',{donor})
+    //find org
+    const organizations = await userModel.find({
+      _id: {$in: orgId}
+    })
+    return res.status(200).send({
+      success:true,
+      message:'Organization Data Fetched Successfully',
+      organizations 
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send({
+      success:false,
+      errorMessage:'Error in Organization API',
+      error
+    })
+  }
+}
+
+export const getOrganizationControllerForHospital = async (req:Request, res:Response) =>{ 
+  try {
+    const hospital = req.body.userId
+    const orgId = await inventoryModel.distinct('organization',{hospital})
+    //find org
+    const organizations = await userModel.find({
+      _id: {$in: orgId}
+    })
+    return res.status(200).send({
+      success:true,
+      message:'Hospital Data Fetched Successfully',
+      organizations 
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send({
+      success:false,
+      errorMessage:'Error in Organization API',
+      error
+    })
+  }
+}
+
