@@ -10,7 +10,7 @@ import PublicRoute from './components/Routes/PublicRoute'
 import Donor from './pages/Dashboard/Donor'
 import Hospital from './pages/Dashboard/Hospital'
 import Organization from './pages/Dashboard/Organization'
-
+import Customer from './pages/Dashboard/Customer'
 
 function App() {
   return (
@@ -23,6 +23,9 @@ function App() {
           }></Route>
           <Route path='/hospital' element={
             <ProtectedRoute><Hospital /></ProtectedRoute>
+          }></Route>
+          <Route path='/customer' element={
+            <ProtectedRoute><Customer /></ProtectedRoute>
           }></Route>
            <Route path='/organization' element={
             <ProtectedRoute><Organization /></ProtectedRoute>

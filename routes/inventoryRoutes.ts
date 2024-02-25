@@ -1,6 +1,6 @@
 import express from "express";
 import { authMiddleware } from "../middlewares/authMiddleware";
-import { createInventoryController, getInventoryController, getDonorsController, getHospitalsController, getOrganizationController, getOrganizationControllerForHospital } from "../controllers/inventoryController";
+import { createInventoryController, getInventoryController, getDonorsController, getHospitalsController, getOrganizationController, getOrganizationControllerForHospital, getInventoryHospitalController } from "../controllers/inventoryController";
 const router = express.Router()
 
 //routes
@@ -11,6 +11,8 @@ router.post('/create-inventory',authMiddleware, createInventoryController);
 //get all blood records
 
 router.get('/get-inventory',authMiddleware, getInventoryController);
+
+router.post('/get-inventory-hospital',authMiddleware, getInventoryHospitalController);
 
 router.get('/get-donors',authMiddleware, getDonorsController );
 

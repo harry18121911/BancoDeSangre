@@ -40,9 +40,9 @@ const Sidebar = () => {
                 <i className="fa-solid fa-hospital"></i>
                 <Link to="/hospital">Hospital</Link>
               </div>
-            </>
+            </> 
           )}
-                    {user?.role === "donor" || user?.role === "hospital"  && (
+          {user?.role === "donor" || user?.role === "hospital" && (
             <div
               className={`menu-item ${location.pathname === "/organization" && "active"
                 }`}
@@ -51,7 +51,15 @@ const Sidebar = () => {
               <Link to="/organization">Organization</Link>
             </div>
           )}
-
+          {user?.role === "hospital" && (
+            <div
+              className={`menu-item ${location.pathname === "/customer" && "active"
+                }`}
+            >
+              <i className="fa-sharp fa-solid fa-building-ngo"></i>
+              <Link to="/customer">Customer</Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

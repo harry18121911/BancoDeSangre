@@ -13,7 +13,7 @@ const Donor = () => {
       }
     } catch (error) {
       console.log(error)
-    }
+    }                     
   }
 
   useEffect(() => {

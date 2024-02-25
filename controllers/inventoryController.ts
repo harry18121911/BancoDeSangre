@@ -200,3 +200,27 @@ export const getOrganizationControllerForHospital = async (req:Request, res:Resp
   }
 }
 
+export const getInventoryHospitalController =async (req:Request, res:Response) =>{
+  try {
+      const inventory = await inventoryModel
+      .find(req.body.filters)
+      .populate("donor")
+      .populate("hospital")
+      .populate("organization")
+      .sort({createdAt: -1})
+      return res.status(200).send({
+          success:true,
+          message:"Get all hospital records successfully",
+          inventory
+      });
+  } catch (error) {
+      console.log(error)
+      return res.status(500).send({
+          success:false,
+          message:'Error in Get All Inventory',
+          error
+      })
+
+  }
+}
+
