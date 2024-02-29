@@ -22,6 +22,7 @@ const Organization = () => {
         console.log(data)
         if (data?.success) {
           setDataDonors(data?.organizations)
+          
         }
       }
       if (user?.role === 'hospital') {
@@ -42,7 +43,7 @@ const Organization = () => {
   
     return (
       <Layout>
-        <div className="container">
+        <div className="container mt-4">
           <table className="table">
             <thead>
               <tr>

@@ -224,3 +224,23 @@ export const getInventoryHospitalController =async (req:Request, res:Response) =
   }
 }
 
+// GET RECENT BLOOD RECORD
+export const getRecentInventoryController = async (req:Request, res:Response) =>{
+  try {
+    const inventory = await inventoryModel.find({
+      organization:req.body.userId
+    }).limit(3).sort({createdAt: -1})
+    return res.status(200).send({
+      success:true,
+      message:'Recent Inventory Data',
+      inventory
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send({
+      success:false,
+      errorMessage: 'Error In Recent Inventory API',
+      error
+    })
+  }
+}

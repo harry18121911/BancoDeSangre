@@ -12,15 +12,15 @@ type user = {
   hospitalName: string;
   organizationName: string;
 }
-const Customer = () => {
+const Donation = () => {
   const user = useSelector<RootState, user>((state) => state.auth.user)
   const [dataDonors, setDataDonors] = useState([])
   const getDonors = async () => {
     try {
       const { data } = await API.post('/inventory/get-inventory-hospital', {
         filters:{
-          inventoryType: 'out',
-          hospital: user?._id,
+          inventoryType: 'in',
+          donor: user?._id,
         },
       })
       console.log(data)
@@ -67,4 +67,6 @@ const Customer = () => {
   )
 }
 
-export default Customer
+
+
+export default Donation

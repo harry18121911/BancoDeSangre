@@ -38,7 +38,7 @@ const HomePage = () => {
         <>
           <div className="container">
           <h4
-            className="ms-4"
+            className="ms-4 w-25"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
             style={{ cursor: "pointer" }}>

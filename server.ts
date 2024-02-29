@@ -7,6 +7,7 @@ import connectDB from './config/db';
 import testRoutes from './routes/testRoutes';
 import authRoutes from './routes/authRoutes';
 import inventoryRoutes from './routes/inventoryRoutes';
+import analyticsRoutes from './routes/analyticsRoutes';
 //dot config
 dotenv.config()
 //mongodb connection
@@ -29,6 +30,7 @@ app.use('/api/v1/auth',authRoutes);
 //inventory routes
 app.use('/api/v1/inventory',inventoryRoutes);
 
+app.use('/api/v1/analytics',analyticsRoutes);
 //htpp://localhost:8080/test
 
 //port
