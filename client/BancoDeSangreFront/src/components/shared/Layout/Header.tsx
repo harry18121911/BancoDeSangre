@@ -37,12 +37,9 @@ const Header = () => {
                     Analytics
                   </Link>
                 </li>
-              ) : (<li className='nav-item mx-3'>
-                <Link to="/" className='nav-link'>
-                  Home
-                </Link>
-              </li>)
+              ) : userRole ==="admin" ? <li className='nav-item mx-3'><Link to= "/admin" className='nav-link'>Admin Panel</Link></li> : <li className='nav-item mx-3'><Link to= "/" className='nav-link'>Home</Link></li>
             }
+             
 
             <li className='nav-item mx-3 '>
               <button className='btn btn-danger' onClick={handleLogout} >

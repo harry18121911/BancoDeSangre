@@ -8,11 +8,11 @@ import Modal from "../components/shared/modal/Modal"
 import "bootstrap/dist/js/bootstrap.min.js";
 import API from "../services/API"
 import moment from 'moment'
+
 const HomePage = () => {
   const loading = useSelector<RootState, boolean>((state) => state.auth.loading)
   const error = useSelector<RootState, string>((state) => state.auth.error)
   const [data, setData] = useState([])
-
   //get function
   const getBloodRecords = async () => {
     try {
