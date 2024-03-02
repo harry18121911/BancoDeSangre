@@ -17,7 +17,7 @@ const ProtectedRoute = (props:ContainerProps) => {
     try {
       const {data} = await API.get('/auth/current-user')
       if(data?.success){
-        dispatch(getCurrentUser(data))
+        dispatch(getCurrentUser())
       }
     } catch (error) {
       localStorage.clear()

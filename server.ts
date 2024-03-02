@@ -8,6 +8,7 @@ import testRoutes from './routes/testRoutes';
 import authRoutes from './routes/authRoutes';
 import inventoryRoutes from './routes/inventoryRoutes';
 import analyticsRoutes from './routes/analyticsRoutes';
+import adminRoutes from './routes/adminRoutes';
 //dot config
 dotenv.config()
 //mongodb connection
@@ -32,7 +33,7 @@ app.use('/api/v1/inventory',inventoryRoutes);
 
 app.use('/api/v1/analytics',analyticsRoutes);
 //htpp://localhost:8080/test
-
+app.use('/api/v1/admin', adminRoutes)
 //port
 
 const PORT = process.env.PORT 

@@ -1,7 +1,7 @@
 import { BiDonateBlood, BiUserCircle } from 'react-icons/bi'
 import { RootState } from '../../../redux/store'
 import { useSelector } from 'react-redux'
-import { useNavigate, useLocation, Link } from 'react-router-dom'
+import { useNavigate,  Link } from 'react-router-dom'
 
 const Header = () => {
   const userName = useSelector<RootState, string>((state) => state.auth.user.name)
@@ -9,14 +9,12 @@ const Header = () => {
   const hospitalName = useSelector<RootState, string>((state) => state.auth.user.hospitalName)
   const organizationName = useSelector<RootState, string>((state) => state.auth.user.organizationName)
   const navigate = useNavigate();
-  const location = useLocation();
   // logout handle 
   const handleLogout = () => {
     localStorage.clear()
     alert("Logout Successfully")
     navigate('/login')
   }
-
 
   return (
     <div>
@@ -31,13 +29,17 @@ const Header = () => {
               </p>
             </li>
             {
-              location.pathname === "/" || location.pathname === "/donor" || location.pathname === "/hospital" ? (
+              userRole ==="organization"  ? (
                 <li className='nav-item mx-3'>
                   <Link to="/analytics" className='nav-link'>
                     Analytics
                   </Link>
                 </li>
-              ) : userRole ==="admin" ? <li className='nav-item mx-3'><Link to= "/admin" className='nav-link'>Admin Panel</Link></li> : <li className='nav-item mx-3'><Link to= "/" className='nav-link'>Home</Link></li>
+              ): userRole ==="donor" || userRole ==="hospital" || userRole ==="hospital" ?<li className='nav-item mx-3'>
+                  <Link to="/" className='nav-link'>
+                    Home
+                  </Link>
+                </li> : userRole ==="admin" ? <li className='nav-item mx-3'><Link to= "/admin" className='nav-link'>Admin Panel</Link></li> : <li className='nav-item mx-3'><Link to= "/" className='nav-link'>Home</Link></li>
             }
              
 

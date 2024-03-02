@@ -2,8 +2,7 @@ import Layout from "../../components/shared/Layout/Layout"
 import { useEffect, useState } from "react"
 import moment from "moment"
 import API from "../../services/API"
-const Hospital = () =>
- {
+const Hospital = () =>{
   const [dataDonors, setDataDonors] = useState([])
   const getDonors = async () => {
     try {
